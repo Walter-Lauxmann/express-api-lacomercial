@@ -17,8 +17,8 @@ exports.getProveedorId = (req, res) => {
 };
 
 exports.crearProveedor = (req, res) => {
-    const {codigo, nombre, descripcion, precio, stock, imagen} = req.body;
-    db.query('INSERT INTO proveedores (codigo, nombre, descripcion, precio, stock, imagen) VALUES (?, ?, ?, ?, ?, ?)', [codigo, nombre, descripcion, precio, stock, imagen], (err, result) => {
+    const {cuit, nombre, direccion} = req.body;
+    db.query('INSERT INTO proveedores (cuit, nombre, direccion) VALUES (?, ?, ?)', [cuit, nombre, direccion], (err, result) => {
         if(err) return res.status(500).json({error: err});
         res.status(201).json({id:result.insertId});
     });
@@ -26,8 +26,8 @@ exports.crearProveedor = (req, res) => {
 
 exports.actualizarProveedor = (req, res) => {
     const id = req.params.id;
-    const {codigo, nombre, descripcion, precio, stock, imagen} = req.body;
-    db.query('UPDATE proveedores SET codigo = ?, nombre = ?, descripcion = ?, precio = ?, stock = ?, imagen = ?', [codigo, nombre, descripcion, precio, stock, imagen], (err) => {
+    const {cuit, nombre, direccion} = req.body;
+    db.query('UPDATE proveedores SET cuit = ?, nombre = ?, direccion = ?', [cuit, nombre, direccion], (err) => {
         if(err) return res.status(500).json({error: err});
         res.json({mensaje: 'Proveedor actualizado'});
     });
