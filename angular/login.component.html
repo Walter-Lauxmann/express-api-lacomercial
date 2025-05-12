@@ -1,0 +1,12 @@
+// login.component.html
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <label for="usuario">Usuario:</label>
+  <input id="usuario" formControlName="usuario">
+
+  <label for="clave">Clave:</label>
+  <input id="clave" type="password" formControlName="clave">
+
+  <button type="submit">Ingresar</button>
+
+  <div *ngIf="errorMsg" style="color: red">{{ errorMsg }}</div>
+</form>
